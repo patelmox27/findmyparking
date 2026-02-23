@@ -1,0 +1,200 @@
+ADMIN 
+END USER 
+
+[NAVBAR] 
+Admin --> user-list, add, remove, block... 
+Arena Manager --> 
+Trainer --> 
+User --> 
+
+d: project : 
+	mern 
+		--> frontend 
+			--> learning26 --> X 
+			--> cmd -- create other folder for project in frontend folder 
+- npm create vite 
+- project name 
+- select react 
+- javascript 
+
+- cd project name 
+- npm install 
+- code . 
+-------------------------------------------------------------------------------------
+required package install : 
+- npm i react-router-dom axios react-hook-form 
+
+#tailwind css 4th version 
+- npm install tailwindcss @tailwindcss/vite 
+config 
+--> vite.config.js --> plugins : [] 
+	- add tailwind() 
+
+--> index.css 
+- @import "tailwindcss"; 
+- in App.jsx --> comment app.css import 
+--> main.jsx 
+- remove index.css import 
+- import './index.css' 
+
+Folder structure 
+	src : 
+		components --> reusable 		(folder) 
+		hooks 					(folder) 
+		pages --> static 			(folder) 
+		router 					(folder) 
+			AppRouter.jsx 			(file) 
+
+
+main.jsx 
+	--> <App /> 
+
+App.jsx 
+--> <AppRouter /> 
+
+AppRouter.jsx 
+----------------
+ex., {path:"/xyz",element={<ComponentName />}} --> for routing 
+
+const router = ()=>{[
+	{path:"/login",element:<Login />},
+	{path:"/signin",element:<SignIn />},
+	{
+		path:"/user,element:<UserNavbar />,
+		childern : [
+			{path:"carlist",element:<CarList />},
+			{}
+		]
+	},
+	{
+		path:"/admin,element:<AdminSidebar />,
+		childern : [
+			{path:"arena",element:<ArenaList />},
+			{}
+		]
+	},
+]}
+
+
+create 2 seperate folder : 
+components 
+	user 
+		UserNavbar.jsx 
+			--> for routing in AppRouter.jsx 
+				{
+					path : "/user", element : <UserNavbar />,
+					childern :[
+						{path : "carlist, element : <CarList />},
+					]
+				} 
+	admin 
+		AdminSidebar.jsx 
+			--> for routing in AppRouter.jsx
+				{path : "/admin", element : <AdminSidebar />} 
+
+outlet : to load child components 
+--------- 
+AppRouter.jsx 
+	--> <Outlet />  -- inside parent component's main context
+
+
+structure
+
+	src/
+│
+├── assets/                         
+│     ├── images/
+│     ├── icons/
+│     └── styles/
+│           └── global.css
+│
+├── components/
+│     ├── common/                   
+│     │     ├── Button.jsx
+│     │     ├── Input.jsx
+│     │     ├── Loader.jsx
+│     │     ├── Modal.jsx
+│     │     ├── Table.jsx
+│     │     ├── Pagination.jsx
+│     │     ├── ProtectedRoute.jsx
+│     │     └── NotFound.jsx
+│     │
+│     ├── layout/                   
+│     │     ├── MainLayout.jsx
+│     │     ├── AuthLayout.jsx
+│     │     ├── UserLayout.jsx
+│     │     └── AdminLayout.jsx
+│     │
+│     ├── user/
+│     │     ├── UserNavbar.jsx
+│     │     ├── ParkingCard.jsx
+│     │     ├── ReservationCard.jsx
+│     │     ├── SearchFilter.jsx
+│     │     └── PaymentSummary.jsx
+│     │
+│     └── admin/
+│           ├── AdminSidebar.jsx
+│           ├── LotCard.jsx
+│           ├── SlotTable.jsx
+│           ├── AnalyticsCard.jsx
+│           └── RevenueChart.jsx
+│
+├── pages/
+│     ├── auth/
+│     │     ├── Login.jsx
+│     │     ├── Register.jsx
+│     │     └── ForgotPassword.jsx
+│     │
+│     ├── user/
+│     │     ├── Home.jsx
+│     │     ├── SearchParking.jsx
+│     │     ├── ParkingDetails.jsx
+│     │     ├── Reservation.jsx
+│     │     ├── Payment.jsx
+│     │     ├── BookingHistory.jsx
+│     │     └── UserDashboard.jsx
+│     │
+│     └── admin/
+│           ├── AdminDashboard.jsx
+│           ├── ManageLots.jsx
+│           ├── ManageSlots.jsx
+│           ├── ManageUsers.jsx
+│           ├── ManageReservations.jsx
+│           └── Reports.jsx
+│
+├── hooks/
+│     ├── useAuth.js
+│     ├── useParking.js
+│     ├── useReservation.js
+│     ├── usePayment.js
+│     └── useDebounce.js
+│
+├── context/
+│     ├── AuthContext.jsx
+│     └── ParkingContext.jsx
+│
+├── services/                       
+│     ├── api.js                   # axios instance
+│     ├── authService.js
+│     ├── parkingService.js
+│     ├── reservationService.js
+│     ├── paymentService.js
+│     └── adminService.js
+│
+├── store/                         # if using Redux or Zustand
+│     └── parkingStore.js
+│
+├── router/
+│     └── AppRouter.jsx
+│
+├── config/
+│     └── env.js                   # baseURL, keys
+│
+├── utils/
+│     ├── constants.js
+│     ├── helpers.js
+│     ├── validators.js
+│     └── formatters.js
+│
+├── App.jsx
+└── main.jsx
