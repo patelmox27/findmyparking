@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Await } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const GetApiDemo = () => {
   const [users, setusers] = useState([]);
@@ -10,6 +12,18 @@ export const GetApiDemo = () => {
     console.log("response", res);
     setusers(res.data.data);
   };
+  const Userdelete = async (id) => {
+    //alert("delete user called..."+id)
+    ///url =de5.onrender.com/user/user/12345678o9p
+
+    const res = await axios.delete(`https://node5.onrender.com/user/user/${id}`)
+    console.log(res)
+    if (res.status == 204) {
+      toast.success("User deleted successfully")
+      getUsers()
+
+    }
+  }
 
   useEffect(() => {
     getUsers();
@@ -28,6 +42,7 @@ export const GetApiDemo = () => {
               <th className="px-6 py-3 text-sm font-semibold">Name</th>
               <th className="px-6 py-3 text-sm font-semibold">Email</th>
               <th className="px-6 py-3 text-sm font-semibold">Age</th>
+              <th className="px-6 py-3 text-sm font-semibold">DELETE USER</th>
             </tr>
           </thead>
 
@@ -41,6 +56,11 @@ export const GetApiDemo = () => {
                   <td className="px-6 py-3">{user.name}</td>
                   <td className="px-6 py-3">{user.email}</td>
                   <td className="px-6 py-3">{user.age}</td>
+                  <td className="px-6 py-3">
+                    <button className="bg-red-500 hover:bg-red-700 active:scale-95 text-white px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-200"
+                      onClick={() => Userdelete(user._id)} text-red py-2 rounded-lg >
+                      DELETE
+                    </button></td>
                 </tr>
               );
             })}
