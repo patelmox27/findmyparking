@@ -28,7 +28,7 @@ const AdminSidebar = () => {
         </NavLink>
 
         <NavLink
-          to="/admin/lots"
+          to="/admin/managelots"
           className="flex items-center gap-3 p-2 rounded hover:bg-gray-700"
         >
           <CarFront size={18} />

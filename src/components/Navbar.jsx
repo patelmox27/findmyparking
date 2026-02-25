@@ -37,7 +37,7 @@ const Navbar = () => {
             <>
               {/* Role Based Dashboard */}
               <Link
-                to={user.role === "admin" ? "/admin/dashboard" : "/dashboard"}
+                to={user.role === "admin" ? "/admin/dashboard" : "/user/dashboard"}
                 className="text-gray-700 hover:text-blue-600 transition"
               >
                 Dashboard
